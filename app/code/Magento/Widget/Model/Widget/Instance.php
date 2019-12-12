@@ -610,6 +610,8 @@ class Instance extends \Magento\Framework\Model\AbstractModel
             if ($name == 'conditions') {
                 $name = 'conditions_encoded';
                 $value = $this->conditionsHelper->encode($value);
+            } elseif(is_array($value) && count($value) !== count($value, COUNT_RECURSIVE)) { // multidimensional array
+                $value = $this->conditionsHelper->encode($value);
             } elseif (is_array($value)) {
                 $value = implode(',', $value);
             }
