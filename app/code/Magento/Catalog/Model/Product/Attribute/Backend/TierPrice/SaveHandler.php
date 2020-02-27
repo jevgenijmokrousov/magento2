@@ -82,7 +82,7 @@ class SaveHandler extends AbstractHandler
                 );
             }
             $websiteId = $this->storeManager->getStore($entity->getStoreId())->getWebsiteId();
-            $isGlobal = $attribute->isScopeGlobal() || $websiteId === 0;
+            $isGlobal = $attribute->isScopeGlobal() || $this->isWebsiteGlobal((int)$websiteId);
             $identifierField = $this->metadataPoll->getMetadata(ProductInterface::class)->getLinkField();
             $priceRows = array_filter($priceRows);
             $productId = (int) $entity->getData($identifierField);
