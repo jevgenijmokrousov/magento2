@@ -91,7 +91,7 @@ class UpdateHandler extends AbstractHandler
                 );
             }
             $websiteId = (int)$this->storeManager->getStore($entity->getStoreId())->getWebsiteId();
-            $isGlobal = $attribute->isScopeGlobal() || $websiteId === 0;
+            $isGlobal = $attribute->isScopeGlobal() || $this->isWebsiteGlobal((int)$websiteId);
             $identifierField = $this->metadataPoll->getMetadata(ProductInterface::class)->getLinkField();
             $productId = (int)$entity->getData($identifierField);
 
